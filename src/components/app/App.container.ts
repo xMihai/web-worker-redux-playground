@@ -1,9 +1,21 @@
+import { compose, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
-import { increment } from '../../store/actions'
+import { start, stop, reset } from '../../store/actions'
 
-import App from './App'
+import App, { Props } from './App'
 
-export default connect(
-  ({ counter }: { counter: number }) => ({ counter }),
-  { onClick: increment }
+export default compose<OutProps, InProps>(
+  connect(
+    ({ counter }: { counter: number }) => ({ counter }),
+    { start, stop, reset }
+  ),
+  withHandlers({
+    startOnClick: ({ start }) => () => start(),
+    stopOnClick: ({ stop }) => () => stop(),
+    resetOnClick: ({ reset }) => () => reset(),
+  })
 )(App)
+
+type OutProps = Props
+
+type InProps = {}

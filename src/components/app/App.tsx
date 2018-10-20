@@ -1,17 +1,21 @@
 import React from 'react'
 
-const App = ({ counter, onClick }: Props) => (
+const App = ({ counter, startOnClick, stopOnClick, resetOnClick }: Props) => (
   <div>
-    <img src="/images/fire.gif" onClick={onClick} />
+    <button onClick={startOnClick}>Start</button>
+    <button onClick={stopOnClick}>Stop</button>
+    <button onClick={resetOnClick}>Reset</button>
     <div>
       <h1>{counter}</h1>
     </div>
   </div>
 )
 
-interface Props {
+export interface Props {
   counter: number
-  onClick: () => any
+  startOnClick: () => any
+  stopOnClick: () => any
+  resetOnClick: () => any
 }
 
 export default App
