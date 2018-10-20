@@ -8,6 +8,10 @@ import { App } from 'components/app'
 import rootReducer from 'store/reducer'
 import middleware from 'store/middleware'
 
+import { send } from 'engine/start'
+
+send('hey')
+
 const store = createStore(rootReducer, applyMiddleware(middleware))
 
 ReactDOM.render(

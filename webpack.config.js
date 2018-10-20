@@ -18,6 +18,6 @@ module.exports = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   module: {
-    rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }],
+    rules: [{ test: /\.worker\.ts$/, loader: 'worker-loader' }, { test: /\.tsx?$/, loader: 'ts-loader' }],
   },
 }
