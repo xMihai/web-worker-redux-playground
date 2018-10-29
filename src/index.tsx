@@ -1,22 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
 
 import { App } from 'components/app'
 
-import rootReducer from 'store/reducer'
-import middleware from 'store/middleware'
+import Worker from './store/redux.worker'
 
-import { send } from 'engine/start'
+import { start } from './store/actions'
 
-send('hey')
+// tslint:disable:no-expression-statement
 
-const store = createStore(rootReducer, applyMiddleware(middleware))
+const worker = new Worker()
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('index')
-)
+worker.onmessage = (e: MessageEvent) => {
+  console.log('main: received:', e.data)
+}
+
+// worker.postMessage(start())
+
+ReactDOM.render(<App />, document.getElementById('index'))

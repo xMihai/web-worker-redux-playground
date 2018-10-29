@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions'
 
 import * as T from './actionTypes'
+import State from './State'
 
 export default handleActions<State, any>(
   {
@@ -9,11 +10,5 @@ export default handleActions<State, any>(
     [T.STOP]: (state: State, action) => ({ ...state, timer: null }),
     [T.RESET]: (state: State, action) => ({ ...state, counter: 0 }),
   },
-  { counter: 0, start: null, timer: null }
+  { counter: 0, timer: null }
 )
-
-export interface State {
-  readonly counter: number
-  readonly timer: number | null
-  readonly start: number | null
-}
