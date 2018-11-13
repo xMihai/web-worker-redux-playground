@@ -39,12 +39,4 @@ onmessage = (e: MessageEvent) => {
   store.dispatch(e.data)
 }
 
-class WebpackWorker extends Worker {
-  constructor(url: string = '') {
-    super(url)
-  }
-}
-
 declare const postMessage: (message: any) => void
-
-export default WebpackWorker
